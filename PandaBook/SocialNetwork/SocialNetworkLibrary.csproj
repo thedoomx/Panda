@@ -43,6 +43,12 @@
     <Compile Include="PandaSocialNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\PandaLibrary.csproj">
+      <Project>{84e9e390-7979-4fc8-b2b7-6a5c4ce1c1d8}</Project>
+      <Name>PandaLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
