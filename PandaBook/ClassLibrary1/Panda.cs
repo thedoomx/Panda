@@ -4,13 +4,10 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using  System.Text.RegularExpressions;
-namespace Panda
-{
-	internal class PandaExeption
-	{
-	};
 
+namespace PandaLibrary
+using  System.Text.RegularExpressions;
+{
 	public class Panda
 	{
 		private string Name;
@@ -37,7 +34,7 @@ namespace Panda
 			Name = name;
 			if (a.IsMatch(email))
 			{
-				Email = email;
+			Email = email;
 			}
 			else throw new InvalidComObjectException();
 			Gender = gender;
