@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using  System.Text.RegularExpressions;
 namespace Panda
 {
+	internal class PandaExeption
+	{
+	};
+
 	public class Panda
 	{
 		private string Name;
@@ -28,8 +33,13 @@ namespace Panda
 
 		public Panda(string name,string email, GenderType gender)
 		{
+			Regex a = new Regex(@"@\.");
 			Name = name;
-			Email = email;
+			if (a.IsMatch(email))
+			{
+				Email = email;
+			}
+			else throw new InvalidComObjectException();
 			Gender = gender;
 		}
 
