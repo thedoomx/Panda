@@ -19,18 +19,24 @@ namespace Panda
 			Female,
 		};
 
-		Panda()
+		public Panda()
 		{
 			Name = "";
 			Email = "";
 			Gender = GenderType.Male;
 		}
 
-		Panda(string name,string email, GenderType gender)
+		public Panda(string name,string email, GenderType gender)
 		{
 			Name = name;
 			Email = email;
 			Gender = gender;
+		}
+
+		public override string ToString()
+		{
+			string result = "Panda name: " + Name + ", email:" + Email + "gender: " + Gender.ToString();
+            return result;
 		}
 	}
 }
