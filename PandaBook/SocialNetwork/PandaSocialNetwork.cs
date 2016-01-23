@@ -18,7 +18,34 @@ namespace SocialNetworkLibrary
 
         }
 
+        public PandaSocialNetwork(PandaSocialNetworkDTO dto)
+        {
+            foreach(Panda panda in dto.Pandas)
+            {
+                int pandaHashCode = panda.GetHashCode();
+                List<Panda> pandaFriends = dto.Pandas.Where(p => {
+                    return dto.Friendships.Keys.Contains(pandaHashCode) ? dto.Friendships[pandaHashCode].Contains(p.GetHashCode())
+                                                                        : false;
+                                                                 }).ToList();
+                container.Add(panda, pandaFriends);
+            }
+        }
 
+        public PandaSocialNetworkDTO ConvertToDTO()
+        {
+            Dictionary<int, List<int>> friendships = new Dictionary<int, List<int>>();
+
+            foreach(var pandaWithFriends in container.Select(i => new {
+                                                                        Panda = i.Key.GetHashCode(),
+                                                                        Friends = i.Value.Select(f => f.GetHashCode())
+                                                                                         .ToList()
+                                                                      }))
+            {
+                friendships.Add(pandaWithFriends.Panda, pandaWithFriends.Friends);
+            }
+
+            return new PandaSocialNetworkDTO() { Pandas = container.Keys.ToList(), Friendships = friendships };
+        }
 
         public void AddPanda(Panda panda)
         {
@@ -110,7 +137,7 @@ namespace SocialNetworkLibrary
             return false;
         }
 
-        public int HowManyGenderInNetwork(int level, Panda panda, Panda.GenderType gender)
+        public int HowManyGenderInNetwork(int level, Panda panda, GenderType gender)
         {
             List<Panda> visited = new List<Panda>();
             Queue<PandaWithLevel> queue = new Queue<PandaWithLevel>();
@@ -198,10 +225,20 @@ namespace SocialNetworkLibrary
             container = (Dictionary<Panda, List<Panda>>)info.GetValue("container", typeof(Dictionary<Panda, List<Panda>>));
         }
 
+
         private class PandaWithLevel
         {
             public Panda Panda { get; set; }
             public int Level { get; set; }
         }
+    }
+
+    [DataContract]
+    public class PandaSocialNetworkDTO
+    {
+        [DataMember]
+        public List<Panda> Pandas { get; set; }
+        [DataMember]
+        public Dictionary<int, List<int>> Friendships { get; set; }
     }
 }

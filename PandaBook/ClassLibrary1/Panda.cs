@@ -6,21 +6,32 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Runtime.Serialization;
 
 namespace PandaLibrary
 {
+    [DataContract]
+    public enum GenderType
+    {
+        [EnumMember]
+        Male,
+        [EnumMember]
+        Female,
+    };
+
+    [Serializable]
+    [DataContract]
 	public class Panda : IComparable
 	{
-		private string Name;
-		private string Email;
+        [DataMember]
+        private string Name { get; set; }
+        [DataMember]
+        private string Email { get; set; }
 
-		public GenderType Gender { get; }
+        [DataMember]
+        public GenderType Gender { get; set; }
 
-		public enum GenderType
-		{
-			Male,
-			Female,
-		};
+  
 
 		public Panda()
 		{
@@ -33,7 +44,7 @@ namespace PandaLibrary
 		{
 			Regex a = new Regex(@"@\.");
 			Name = name;
-			if (a.IsMatch(email))
+			//if (a.IsMatch(email))
 			{
 				Email = email;
 			}
