@@ -43,8 +43,6 @@ namespace PandaLibrary
 
 		public static bool ValidEmail(string str)
 		{
-			//"[a-z]"
-			var a = new Regex(@"@\.");
 			return Regex.IsMatch(str, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 		}
 
@@ -60,24 +58,19 @@ namespace PandaLibrary
 
 		public override string ToString()
 		{
-			string result = "Panda name: " + Name + ", email: " + Email + " gender: " + Gender.ToString();
-			return result;
+			return "Panda name: " + Name + ", email: " + Email + " gender: " + Gender.ToString();
 		}
 
 		
 
 		public int CompareTo(object obj)
 		{
-			if (obj == null)
-			{
-				throw new ArgumentNullException();
-			}
-			Panda p = obj as Panda;
-			if ((System.Object)p == null)
-			{
-				throw new CustomAttributeFormatException();
-			}
+			if (obj == null) throw new ArgumentNullException();
 
+			Panda p = obj as Panda;
+
+			if ((System.Object) p == null)
+				throw new CustomAttributeFormatException();
 			return (this.Name == p.Name && this.Email == p.Email) ? 0 : -1;
 		}
 
@@ -97,9 +90,7 @@ namespace PandaLibrary
 		{
 			Panda p = obj as Panda;
 			if (p == null)
-			{
 				return false;
-			}
 
 			return (this.Name == p.Name && this.Email == p.Email && this.Gender == p.Gender) ? true : false;
 		}
