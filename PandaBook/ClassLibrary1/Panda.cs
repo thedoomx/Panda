@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.RegularExpressions
+using System.Text.RegularExpressions;
 
 namespace PandaLibrary
 {
@@ -13,7 +13,10 @@ namespace PandaLibrary
 		private string Name;
 		private string Email;
 
-		private GenderType Gender;
+		public GenderType Gender
+        {
+            get;
+        }
 
 		public enum GenderType
 		{
@@ -36,7 +39,6 @@ namespace PandaLibrary
 			{
 			Email = email;
 			}
-			else throw new InvalidComObjectException();
 			Gender = gender;
 		}
 
