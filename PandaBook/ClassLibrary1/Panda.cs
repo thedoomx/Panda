@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -29,24 +30,30 @@ namespace PandaLibrary
 			Gender = GenderType.Male;
 		}
 
+		public static bool ValidEmail(string str)
+		{
+			var a = new Regex(@"@\.");
+			return Regex.IsMatch(str,"@.");
+		}
+
 		public Panda(string name, string email, GenderType gender)
 		{
-			Regex a = new Regex(@"@\.");
 			Name = name;
-			if (a.IsMatch(email))
+			if (ValidEmail(email))
 			{
 				Email = email;
 			}
+			else throw new DriveNotFoundException();
 			Gender = gender;
 		}
 
 		public override string ToString()
 		{
-			string result = "Panda name: " + Name + ", email:" + Email + "gender: " + Gender.ToString();
+			string result = "Panda name: " + Name + ", email: " + Email + " gender: " + Gender.ToString();
 			return result;
 		}
 
-		public override int GetHashCode()
+		/*public override int GetHashCode()
 		{
 			unchecked
 			{
@@ -54,7 +61,7 @@ namespace PandaLibrary
 				hash = hash*23*Name.Length + Email.Length.GetHashCode() + Gender.GetHashCode();
 				return hash/4;
 			}
-		}
+		}*/
 
 		public int CompareTo(object obj)
 		{
