@@ -16,7 +16,7 @@ namespace PandaLibrary
 		public GenderType Gender
         {
             get;
-        }
+		}
 
 		public enum GenderType
 		{
@@ -60,7 +60,7 @@ namespace PandaLibrary
 
 		public override bool Equals(object obj)
 		{
-		
+			return true;
 		}
 	}
 }
