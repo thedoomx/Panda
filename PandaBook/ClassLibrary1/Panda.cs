@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -11,13 +12,13 @@ using System.Runtime.Serialization;
 namespace PandaLibrary
 {
     [DataContract]
-		public enum GenderType
-		{
+    public enum GenderType
+    {
         [EnumMember]
-			Male,
+        Male,
         [EnumMember]
-			Female,
-		};
+        Female,
+    };
 
     [Serializable]
     [DataContract]
@@ -49,30 +50,28 @@ namespace PandaLibrary
 
 		public Panda(string name, string email, GenderType gender)
 		{
-			Regex a = new Regex(@"@\.");
 			Name = name;
 			//if (a.IsMatch(email))
-			{
 				Email = email;
-			}
+
 			Gender = gender;
 		}
 
 		public override string ToString()
 		{
-			string result = "Panda name: " + Name + ", email:" + Email + "gender: " + Gender.ToString();
+			string result = "Panda name: " + Name + ", email: " + Email + " gender: " + Gender.ToString();
 			return result;
 		}
 
-		//public override int GetHashCode()
-		//{
-		//	unchecked
-		//	{
-		//		int hash = 17;
-		//		hash = Name.GetHashCode() + Email.GetHashCode();
-		//		return hash;
-		//	}
-		//}
+		/*public override int GetHashCode()
+		{
+			unchecked
+			{
+				int hash = 17;
+				hash = hash*23*Name.Length + Email.Length.GetHashCode() + Gender.GetHashCode();
+				return hash/4;
+			}
+		}*/
 
 		public int CompareTo(object obj)
 		{
