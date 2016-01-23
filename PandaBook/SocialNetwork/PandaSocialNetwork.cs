@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SocialNetworkLibrary
 {
-    public class PandaSocialNetwork
+    [Serializable]
+    public class PandaSocialNetwork: ISerializable
     {
         Dictionary<Panda, List<Panda>> container = new Dictionary<Panda, List<Panda>>();
         
@@ -182,6 +184,16 @@ namespace SocialNetworkLibrary
             }
 
             return -1;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("container", this.container, typeof(Dictionary<Panda, List<Panda>>));
+        }
+
+        public PandaSocialNetwork(SerializationInfo info, StreamingContext context)
+        {
+            container = (Dictionary<Panda, List<Panda>>)info.GetValue("container", typeof(Dictionary<Panda, List<Panda>>));
         }
 
         private class PandaWithLevel
