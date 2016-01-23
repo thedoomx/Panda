@@ -39,8 +39,8 @@ namespace PandaLibrary.Tests
 		[TestMethod()]
 		public void ToStringTest()
 		{
-			Panda a = new Panda("Gosho", "email@pesho.bg", Panda.GenderType.Male);
-			Panda b = new Panda("Penka", "email2@pesho.bg", Panda.GenderType.Female);
+			Panda a = new Panda("Gosho", "email@pesho.bg", GenderType.Male);
+			Panda b = new Panda("Penka", "email2@pesho.bg",GenderType.Female);
 			var result = a.ToString();
 			//"Panda name: " + Name + ", email:" + Email + "gender: " + Gender.ToString()
 			if (result != "Panda name: Gosho, email: email@pesho.bg gender: Male")
@@ -53,8 +53,8 @@ namespace PandaLibrary.Tests
 		[TestMethod()]
 		public void GetHashCodeTest()
 		{
-			Panda a = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
-			Panda b = new Panda("Penka", "email2@pesho.bg", Panda.GenderType.Female);
+			Panda a = new Panda("Gosho", "email1@pesho.bg", GenderType.Male);
+			Panda b = new Panda("Penka", "email2@pesho.bg", GenderType.Female);
 
 			if (a.GetHashCode() == b.GetHashCode())
 			{
@@ -64,8 +64,8 @@ namespace PandaLibrary.Tests
 		[TestMethod()]
 		public void GetDifferentHashCodeTest()
 		{
-			Panda a = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
-			Panda b = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
+			Panda a = new Panda("Gosho", "email1@pesho.bg", GenderType.Male);
+			Panda b = new Panda("Gosho", "email1@pesho.bg", GenderType.Male);
 
 			if (a.GetHashCode() != b.GetHashCode())
 			{
@@ -76,9 +76,9 @@ namespace PandaLibrary.Tests
 		[TestMethod()]
 		public void CompareToTest()
 		{
-			Panda a = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
-			Panda b = new Panda("Penka", "email2@pesho.bg", Panda.GenderType.Female);
-			Panda c = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
+			Panda a = new Panda("Gosho", "email1@pesho.bg", GenderType.Male);
+			Panda b = new Panda("Penka", "email2@pesho.bg", GenderType.Female);
+			Panda c = new Panda("Gosho", "email1@pesho.bg", GenderType.Male);
 
 			if (c.CompareTo(a) != 0)
 			{
@@ -94,9 +94,9 @@ namespace PandaLibrary.Tests
 		[TestMethod()]
 		public void EqualsTest()
 		{
-			Panda a = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
-			Panda b = new Panda("Penka", "email2@pesho.bg", Panda.GenderType.Female);
-			Panda c = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
+			Panda a = new Panda("Gosho", "email1@pesho.bg",GenderType.Male);
+			Panda b = new Panda("Penka", "email2@pesho.bg", GenderType.Female);
+			Panda c = new Panda("Gosho", "email1@pesho.bg", GenderType.Male);
 
 			if (!(a.Equals(c)))
 			{ 
@@ -106,9 +106,9 @@ namespace PandaLibrary.Tests
 		[TestMethod()]
 		public void NotEqualsTest()
 		{
-			Panda a = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
-			Panda b = new Panda("Penka", "email2@pesho.bg", Panda.GenderType.Female);
-			Panda c = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
+			Panda a = new Panda("Gosho", "email1@pesho.bg", GenderType.Male);
+			Panda b = new Panda("Penka", "email2@pesho.bg", GenderType.Female);
+			Panda c = new Panda("Gosho", "email1@pesho.bg", GenderType.Male);
 
 			if ((a.Equals(b)))
 			{

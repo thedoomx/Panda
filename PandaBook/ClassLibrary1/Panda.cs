@@ -1,27 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Runtime.Serialization;
 
 namespace PandaLibrary
 {
-	public class Panda : IComparable
-	{
-		private string Name;
-		private string Email;
-
-		public GenderType Gender { get; }
-
+    [DataContract]
 		public enum GenderType
 		{
+        [EnumMember]
 			Male,
+        [EnumMember]
 			Female,
 		};
+
+    [Serializable]
+    [DataContract]
+	public class Panda : IComparable
+	{
+        [DataMember]
+        private string Name { get; set; }
+        [DataMember]
+        private string Email { get; set; }
+
+        [DataMember]
+        public GenderType Gender { get; set; }
+
+  
 
 		public Panda()
 		{
@@ -39,18 +49,18 @@ namespace PandaLibrary
 
 		public Panda(string name, string email, GenderType gender)
 		{
+			Regex a = new Regex(@"@\.");
 			Name = name;
-			if (ValidEmail(email))
+			//if (a.IsMatch(email))
 			{
 				Email = email;
 			}
-			else throw new DriveNotFoundException();
 			Gender = gender;
 		}
 
 		public override string ToString()
 		{
-			string result = "Panda name: " + Name + ", email: " + Email + " gender: " + Gender.ToString();
+			string result = "Panda name: " + Name + ", email:" + Email + "gender: " + Gender.ToString();
 			return result;
 		}
 

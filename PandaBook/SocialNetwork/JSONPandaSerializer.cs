@@ -21,12 +21,12 @@ namespace SocialNetworkLibrary
         {
             string networkAsString = File.ReadAllText(FILE_NAME_PATTERN);
          
-            return JsonConvert.DeserializeObject<PandaSocialNetwork>(networkAsString);
+            return new PandaSocialNetwork(JsonConvert.DeserializeObject<PandaSocialNetworkDTO>(networkAsString));
         }
 
         public void Save(PandaSocialNetwork network)
         {
-            string serializedNetwork = JsonConvert.SerializeObject(network);
+            string serializedNetwork = JsonConvert.SerializeObject(network.ConvertToDTO());
 
             using (var sw = File.CreateText(FILE_NAME_PATTERN))
             {

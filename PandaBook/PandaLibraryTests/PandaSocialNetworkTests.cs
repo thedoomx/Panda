@@ -17,7 +17,7 @@ namespace SocialNetworkLibrary.Tests
 		{
 			PandaSocialNetwork b = new PandaSocialNetwork();
 				//Panda, List<Panda>>();<Panda, List<Panda>> testcontainer = new Dictionary<Panda, List<Panda>>();
-			Panda a = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
+			Panda a = new Panda("Gosho", "email1@pesho.bg", GenderType.Male);
 
 
 			b.AddPanda(a);
