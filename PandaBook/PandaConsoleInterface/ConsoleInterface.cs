@@ -22,6 +22,10 @@ namespace PandaConsoleInterface
             a.MakeFriends(panda2, panda3);
             a.MakeFriends(panda3, panda4);
             Console.WriteLine(a.HowManyGenderInNetwork(2, panda1, Panda.GenderType.Male));
+
+            JSONPandaSerializer serializer = new JSONPandaSerializer();
+            serializer.Save(a);
+            //PandaSocialNetwork deserializedNetwork = serializer.Load();
         }
     }
 }

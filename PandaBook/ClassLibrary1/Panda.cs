@@ -46,15 +46,15 @@ namespace PandaLibrary
 			return result;
 		}
 
-		public override int GetHashCode()
-		{
-			unchecked
-			{
-				int hash = 17;
-				hash = hash*23*Name.Length + Email.Length.GetHashCode() + Gender.GetHashCode();
-				return hash/4;
-			}
-		}
+		//public override int GetHashCode()
+		//{
+		//	unchecked
+		//	{
+		//		int hash = 17;
+		//		hash = Name.GetHashCode() + Email.GetHashCode();
+		//		return hash;
+		//	}
+		//}
 
 		public int CompareTo(object obj)
 		{
