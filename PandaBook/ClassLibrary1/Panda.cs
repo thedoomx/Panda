@@ -13,7 +13,10 @@ namespace PandaLibrary
 		private string Name;
 		private string Email;
 
-		private GenderType Gender;
+		public GenderType Gender
+        {
+            get;
+        }
 
 		public enum GenderType
 		{
@@ -36,7 +39,6 @@ namespace PandaLibrary
 			{
 			Email = email;
 			}
-			else throw new InvalidComObjectException();
 			Gender = gender;
 		}
 
