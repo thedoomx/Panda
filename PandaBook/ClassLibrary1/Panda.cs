@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,15 +9,12 @@ using System.Text.RegularExpressions;
 
 namespace PandaLibrary
 {
-	public class Panda
+	public class Panda : IComparable
 	{
 		private string Name;
 		private string Email;
 
-		public GenderType Gender
-        {
-            get;
-		}
+		public GenderType Gender { get; }
 
 		public enum GenderType
 		{
@@ -31,13 +29,13 @@ namespace PandaLibrary
 			Gender = GenderType.Male;
 		}
 
-		public Panda(string name,string email, GenderType gender)
+		public Panda(string name, string email, GenderType gender)
 		{
 			Regex a = new Regex(@"@\.");
 			Name = name;
 			if (a.IsMatch(email))
 			{
-			Email = email;
+				Email = email;
 			}
 			Gender = gender;
 		}
@@ -45,7 +43,7 @@ namespace PandaLibrary
 		public override string ToString()
 		{
 			string result = "Panda name: " + Name + ", email:" + Email + "gender: " + Gender.ToString();
-            return result;
+			return result;
 		}
 
 		public override int GetHashCode()
@@ -53,14 +51,24 @@ namespace PandaLibrary
 			unchecked
 			{
 				int hash = 17;
-				hash = hash * 23*Name.Length + Email.Length.GetHashCode()+ Gender.GetHashCode();
+				hash = hash*23*Name.Length + Email.Length.GetHashCode() + Gender.GetHashCode();
 				return hash/4;
 			}
 		}
 
-		public override bool Equals(object obj)
+		public int CompareTo(object obj)
 		{
-			return true;
+			if (obj == null)
+			{
+				throw new ArgumentNullException();
+			}
+			Panda p = obj as Panda;
+			if ((System.Object)p == null)
+			{
+				throw new CustomAttributeFormatException();
+			}
+
+			return (this.Name == p.Name && this.Email == p.Email) ? 0 : -1;
 		}
 	}
 }
