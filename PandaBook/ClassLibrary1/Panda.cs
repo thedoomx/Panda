@@ -51,9 +51,10 @@ namespace PandaLibrary
 		public Panda(string name, string email, GenderType gender)
 		{
 			Name = name;
-			//if (a.IsMatch(email))
+			if (ValidEmail(email))
+			{
 				Email = email;
-
+			}
 			Gender = gender;
 		}
 
@@ -63,15 +64,7 @@ namespace PandaLibrary
 			return result;
 		}
 
-		/*public override int GetHashCode()
-		{
-			unchecked
-			{
-				int hash = 17;
-				hash = hash*23*Name.Length + Email.Length.GetHashCode() + Gender.GetHashCode();
-				return hash/4;
-			}
-		}*/
+		
 
 		public int CompareTo(object obj)
 		{
