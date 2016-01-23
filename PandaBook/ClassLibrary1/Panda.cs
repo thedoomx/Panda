@@ -45,5 +45,20 @@ namespace PandaLibrary
 			string result = "Panda name: " + Name + ", email:" + Email + "gender: " + Gender.ToString();
             return result;
 		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				int hash = 17;
+				hash = hash * 23*Name.Length + Email.Length.GetHashCode()+ Gender.GetHashCode();
+				return hash/4;
+			}
+		}
+
+		public override bool Equals(object obj)
+		{
+		
+		}
 	}
 }

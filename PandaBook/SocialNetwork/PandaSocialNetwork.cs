@@ -20,7 +20,7 @@ namespace SocialNetworkLibrary
         {
             if(container.ContainsKey(panda))
             {
-                throw 
+                //throw 
             }
         }
     }
