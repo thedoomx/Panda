@@ -24,6 +24,7 @@ namespace PandaLibrary.Tests
 				Assert.Fail();
 			}
 		}
+
 		[TestMethod()]
 		public void IvalidEmailTest()
 		{
@@ -33,6 +34,7 @@ namespace PandaLibrary.Tests
 				Assert.Fail();
 			}
 		}
+
 		[TestMethod()]
 		public void ToStringTest()
 		{
@@ -40,7 +42,8 @@ namespace PandaLibrary.Tests
 			Panda b = new Panda("Penka", "email2@pesho.bg", Panda.GenderType.Female);
 			var result = a.ToString();
 			//"Panda name: " + Name + ", email:" + Email + "gender: " + Gender.ToString()
-			if (result != "Panda name: Gosho, email: email@pesho.bg gender: Male")// && b.ToString() != "Panda name: Penka, email: email2@pesho.bg gender: Female")
+			if (result != "Panda name: Gosho, email: email@pesho.bg gender: Male")
+				// && b.ToString() != "Panda name: Penka, email: email2@pesho.bg gender: Female")
 			{
 				Assert.Fail();
 			}
@@ -55,10 +58,19 @@ namespace PandaLibrary.Tests
 		[TestMethod()]
 		public void CompareToTest()
 		{
+			Panda a = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
+			Panda b = new Panda("Penka", "email2@pesho.bg", Panda.GenderType.Female);
+			Panda c = new Panda("Gosho", "email1@pesho.bg", Panda.GenderType.Male);
 
-			Assert.Fail();
+			if (c.CompareTo(a) != 0)
+			{
+				Assert.Fail();
+			}
+			if (c.CompareTo(b) != -1)
+			{
+				Assert.Fail();
+			}
+			
 		}
-
-		
 	}
 }
