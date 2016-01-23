@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="PandaSocialNetworkTests.cs" />
     <Compile Include="PandaTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,6 +59,10 @@
     <ProjectReference Include="..\ClassLibrary1\PandaLibrary.csproj">
       <Project>{84E9E390-7979-4FC8-B2B7-6A5C4CE1C1D8}</Project>
       <Name>PandaLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocialNetwork\SocialNetworkLibrary.csproj">
+      <Project>{16196B6A-7A64-4C71-959B-B9DE6E9A6EA4}</Project>
+      <Name>SocialNetworkLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

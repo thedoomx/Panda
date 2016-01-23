@@ -32,8 +32,9 @@ namespace PandaLibrary
 
 		public static bool ValidEmail(string str)
 		{
+			//"[a-z]"
 			var a = new Regex(@"@\.");
-			return Regex.IsMatch(str,"@.");
+			return Regex.IsMatch(str, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 		}
 
 		public Panda(string name, string email, GenderType gender)
@@ -53,15 +54,15 @@ namespace PandaLibrary
 			return result;
 		}
 
-		/*public override int GetHashCode()
-		{
-			unchecked
-			{
-				int hash = 17;
-				hash = hash*23*Name.Length + Email.Length.GetHashCode() + Gender.GetHashCode();
-				return hash/4;
-			}
-		}*/
+		//public override int GetHashCode()
+		//{
+		//	unchecked
+		//	{
+		//		int hash = 17;
+		//		hash = Name.GetHashCode() + Email.GetHashCode();
+		//		return hash;
+		//	}
+		//}
 
 		public int CompareTo(object obj)
 		{
@@ -76,6 +77,39 @@ namespace PandaLibrary
 			}
 
 			return (this.Name == p.Name && this.Email == p.Email) ? 0 : -1;
+		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				int hash = 17;
+				hash = hash * 23 + Name.GetHashCode();
+				hash = hash * 23 + Email.GetHashCode();
+				hash = hash * 23 + Gender.GetHashCode();
+				return hash;
+			}
+		}
+
+		public override bool Equals(object obj)
+		{
+			Panda p = obj as Panda;
+			if (p == null)
+			{
+				return false;
+			}
+
+			return (this.Name == p.Name && this.Email == p.Email && this.Gender == p.Gender) ? true : false;
+		}
+
+		public static bool operator ==(Panda p1, Panda p2)
+		{
+			return object.Equals(p1, p2);
+		}
+
+		public static bool operator !=(Panda p1, Panda p2)
+		{
+			return !(p1 == p2);
 		}
 	}
 }
